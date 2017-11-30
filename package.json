@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "",
     "angular": "",
+    "angular-ui-router": "^0.4.2",
     "express": "",
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",

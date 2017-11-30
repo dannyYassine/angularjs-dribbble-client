@@ -10,15 +10,14 @@ let nunjucks        = require('nunjucks');
 /**
  * App Configuration
  */
+app.use(express.static(path.join(__dirname, '../..', '/website/presentation/public')));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
-
-app.use('/', express.static(path.join(__dirname, '../..', '/website/presentation/public')));
 
 /**
  * Nunjucks for serving html containers
  */
-nunjucks.configure(path.join(__dirname, '..', '/core/templates'), {
+nunjucks.configure(path.join(__dirname, '../..', '/core/views'), {
     autoescape: true,
     express: app
 });
