@@ -9,7 +9,7 @@ module.exports = {
     devtool: 'sourcemap',
     entry: './src/website/index.js',
     output: {
-        filename: './src/website/presentation/public/js/bundle.js'
+        filename: './src/website/public/js/bundle.js'
     },
     module: {
         rules: [

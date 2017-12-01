@@ -8,9 +8,17 @@ import uiRouter from 'angular-ui-router';
 let app = angular.module('drabbble',
             [
                 uiRouter
-            ])
-    .config(configLocationProvider)
-    .config(configRouterProvider);
+            ]);
+
+require('./components');
+require('./services');
+require('./directives');
+require('./controllers');
+
+    app
+        .config(configLocationProvider)
+        .config(configRouterProvider);
+
 
 configLocationProvider.$inject = ['$locationProvider'];
 function configLocationProvider ($locationProvider) {
@@ -23,23 +31,27 @@ function configRouterProvider($urlRouterProvider) {
 }
 
 app.config(function($stateProvider) {
-    var helloState = {
-        name: 'hello',
-        url: '/hello',
-        template: '<h3>hello world!</h3>'
+    const homeState = {
+        name: 'home',
+        url: '/',
+        template: '<h3>Home</h3>'
     };
 
-    var aboutState = {
-        name: 'about',
-        url: '/about',
+    const defaultShotsState = {
+        name: 'shots',
+        url: '/shots',
+        template: '<div shots-list></div>'
+    };
+
+    const profileState = {
+        name: 'profile',
+        url: '/profile',
         template: '<h3>Its the UI-Router hello world app!</h3>'
     };
 
-    $stateProvider.state(helloState);
-    $stateProvider.state(aboutState);
+    $stateProvider.state(homeState);
+    $stateProvider.state(defaultShotsState);
+    $stateProvider.state(profileState);
 });
 
-require('./components');
-require('./services');
-require('./controllers');
 

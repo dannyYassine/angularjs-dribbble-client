@@ -10,7 +10,7 @@ let nunjucks        = require('nunjucks');
 /**
  * App Configuration
  */
-app.use(express.static(path.join(__dirname, '../..', '/website/presentation/public')));
+app.use(express.static(path.join(__dirname, '../..', '/website/public')));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 

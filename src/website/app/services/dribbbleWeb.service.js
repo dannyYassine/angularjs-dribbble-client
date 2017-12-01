@@ -2,16 +2,28 @@
  * Created by dannyyassine on 2017-11-30.
  */
 
+let DribbbleRequest = require('../helpers/dribbbleRequest');
+
 const DribbbleWebService = (function ($http) {
 
-    const execute = (request, callback) => {
-        $http.get("https://api.dribbble.com/v1/shots?access_token=f0f2799e131f9e82942d9c8af209cbcbc176cdd5c12619e5161c7f1fdf4ded55").then(response => {
-           callback(response.data);
+    const executeGet = (request) => {
+        return $http.get(request.query());
+    };
+
+    const executePost = (request) => {
+        return $http.post(request.query());
+    };
+
+    const getShots = (callback) => {
+        let request = new DribbbleRequest();
+        request.setEnpoint('shots');
+        executeGet(request).then(response => {
+            callback(response.data);
         });
     };
 
     return {
-        execute
+        getShots
     }
 
 });

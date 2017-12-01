@@ -4,5 +4,20 @@
 
 const angular = require('angular');
 
+const Controller = require('./application.controller');
+Controller.$inject = ['$scope'];
+
 angular.module('drabbble')
-    .controller('applicationController', require('./application.controller'));
+    .controller('applicationController', Controller);
+
+const ShotsController = require('./shots.controller');
+ShotsController.$inject = ['$scope', 'dribbbleWebService'];
+
+angular.module('drabbble')
+    .controller('shotsController', ShotsController);
+
+const ShotCardController = require('./shotCard.controller');
+ShotCardController.$inject = ['$scope'];
+
+angular.module('drabbble')
+    .controller('shotCardController', ShotCardController);
