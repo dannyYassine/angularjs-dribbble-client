@@ -4,7 +4,6 @@
 
 const angular = require('angular');
 
+let ApplicationComponent = require('./application.component');
 angular.module('drabbble')
-    .component('myApp', {
-        template: require('../templates/application.html')
-    });
+    .component('myApp', ApplicationComponent);

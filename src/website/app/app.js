@@ -34,7 +34,7 @@ app.config(function($stateProvider) {
     const homeState = {
         name: 'home',
         url: '/',
-        template: '<h3>Home</h3>'
+        template: '<div home></div>'
     };
 
     const defaultShotsState = {

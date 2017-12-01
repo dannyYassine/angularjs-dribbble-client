@@ -60,43 +60,49 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(4);
+__webpack_require__(5);
 module.exports = angular;
 
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = " <div class=\"card-list-container main-content-layout\">\n    <div ng-repeat=\"shot in shots\" class=\"card\">\n        <div shot-card shot=\"shot\" dy-fade index=\"{{$index}}\"></div>\n    </div>\n</div>";
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by dannyyassine on 2017-11-29.
  */
 
-__webpack_require__(2);
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
 __webpack_require__(3);
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+__webpack_require__(4);
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_ui_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_ui_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_ui_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_ui_router__);
 /**
  * Created by dannyyassine on 2017-11-29.
@@ -107,10 +113,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 let app = __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('drabbble', [__WEBPACK_IMPORTED_MODULE_1_angular_ui_router___default.a]);
 
-__webpack_require__(6);
-__webpack_require__(8);
-__webpack_require__(11);
-__webpack_require__(17);
+__webpack_require__(7);
+__webpack_require__(10);
+__webpack_require__(13);
+__webpack_require__(22);
 
 app.config(configLocationProvider).config(configRouterProvider);
 
@@ -128,7 +134,7 @@ app.config(function ($stateProvider) {
     const homeState = {
         name: 'home',
         url: '/',
-        template: '<h3>Home</h3>'
+        template: '<div home></div>'
     };
 
     const defaultShotsState = {
@@ -149,7 +155,7 @@ app.config(function ($stateProvider) {
 });
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /**
@@ -34345,7 +34351,7 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -39034,7 +39040,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -39043,18 +39049,31 @@ angular.module('ui.router.state')
 
 const angular = __webpack_require__(0);
 
-angular.module('drabbble').component('myApp', {
-    template: __webpack_require__(7)
-});
+let ApplicationComponent = __webpack_require__(8);
+angular.module('drabbble').component('myApp', ApplicationComponent);
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-29.
+ */
+
+const ApplicationComponent = {
+  template: __webpack_require__(9)
+};
+
+module.exports = ApplicationComponent;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\">Home</a></li>\n            <li><a ui-sref=\"shots\">Shots</a></li>\n            <li><a ui-sref=\"profile\">Profile</a></li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div ui-view></div>\n</div>";
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -39062,19 +39081,19 @@ module.exports = "<div ng-controller=\"applicationController\">\n    <div class=
  */
 
 const angular = __webpack_require__(0);
-const DribbbleWebService = __webpack_require__(9);
+const DribbbleWebService = __webpack_require__(11);
 
 angular.module('drabbble').service('dribbbleWebService', DribbbleWebService);
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by dannyyassine on 2017-11-30.
  */
 
-let DribbbleRequest = __webpack_require__(10);
+let DribbbleRequest = __webpack_require__(12);
 
 const DribbbleWebService = function ($http) {
 
@@ -39102,7 +39121,7 @@ const DribbbleWebService = function ($http) {
 module.exports = DribbbleWebService;
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -39139,41 +39158,6 @@ DribbbleRequest.prototype.query = function () {
 module.exports = DribbbleRequest;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Created by dannyyassine on 2017-11-30.
- */
-
-__webpack_require__(24);
-__webpack_require__(22);
-__webpack_require__(12);
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Created by dannyyassine on 2017-11-30.
- */
-
-const angular = __webpack_require__(0);
-
-const ShotCardDirective = __webpack_require__(13);
-const ShotsListDirective = __webpack_require__(15);
-
-angular.module('drabbble').directive('shotCard', ShotCardDirective);
-
-angular.module('drabbble').directive('shotsList', function () {
-    return {
-        replace: true,
-        template: __webpack_require__(16),
-        controller: 'shotsController'
-    };
-});
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39181,122 +39165,55 @@ angular.module('drabbble').directive('shotsList', function () {
  * Created by dannyyassine on 2017-11-30.
  */
 
-const ShotCardDirective = function () {
-    return {
-        restrict: 'EA',
-        scope: {
-            shot: '=shot'
-        },
-        template: __webpack_require__(14),
-        controller: 'shotCardController'
-    };
-};
-
-module.exports = ShotCardDirective;
+__webpack_require__(26);
+__webpack_require__(14);
+__webpack_require__(16);
+__webpack_require__(18);
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div>\n    <img class=\"card-img hover-position-shadow\"\n         ng-src=\"{{shot.images.normal}}\"\n         alt=\"{{shot.title}}\"\n         ng-mouseover=\"onHover()\"\n         gif-player\n    />\n    <h4>{{ shot.title }}</h4>\n</div>";
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
+const angular = __webpack_require__(0);
+
+const FadeDirective = __webpack_require__(15);
+
+angular.module('drabbble').directive('dyFade', FadeDirective);
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 /**
- * Created by dannyyassine on 2017-11-30.
+ * Created by dannyyassine on 2017-12-01.
  */
 
-const ShotsListDirective = function () {
-    return {
-        replace: true,
-        templateUrl: __webpack_require__(16),
-        controller: 'shotsController'
+const FadeDirective = function () {
+    let directive = {
+        link: link,
+        restrict: 'A'
     };
+
+    function link(scope, element, attr) {
+        let indexCount = attr.index;
+        let raw = element[0];
+        raw.style.opacity = 0.0;
+        raw.style.animationDuration = `0.3s`;
+        raw.style.animationDelay = `${0.05 * indexCount}s`;
+        raw.classList.add('fade-in-scale-bottom');
+        console.log(indexCount);
+    }
+
+    return directive;
 };
 
-module.exports = ShotsListDirective;
+module.exports = FadeDirective;
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports) {
-
-module.exports = " <div class=\"card-container\">\n    <div ng-repeat=\"shot in shots\" class=\"card\">\n        <div shot-card shot=\"shot\" dy-fade index=\"{{$index}}\"></div>\n    </div>\n</div>";
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Created by dannyyassine on 2017-11-29.
- */
-
-const angular = __webpack_require__(0);
-
-const Controller = __webpack_require__(18);
-Controller.$inject = ['$scope'];
-
-angular.module('drabbble').controller('applicationController', Controller);
-
-const ShotsController = __webpack_require__(19);
-ShotsController.$inject = ['$scope', 'dribbbleWebService'];
-
-angular.module('drabbble').controller('shotsController', ShotsController);
-
-const ShotCardController = __webpack_require__(21);
-ShotCardController.$inject = ['$scope'];
-
-angular.module('drabbble').controller('shotCardController', ShotCardController);
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-/**
- * Created by dannyyassine on 2017-11-29.
- */
-
-function ApplicationController($scope) {
-  $scope.title = "Hello world";
-};
-
-module.exports = ApplicationController;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-/**
- * Created by dannyyassine on 2017-11-30.
- */
-
-function ShotsController($scope, dribbbleWebService) {
-    $scope.isLoaded = false;
-
-    dribbbleWebService.getShots(data => {
-        $scope.shots = data;
-        $scope.isLoaded = true;
-    });
-};
-
-module.exports = ShotsController;
-
-/***/ }),
-/* 20 */,
-/* 21 */
-/***/ (function(module, exports) {
-
-/**
- * Created by dannyyassine on 2017-11-30.
- */
-
-const ShotCardController = function ($scope) {};
-
-module.exports = ShotCardController;
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -39305,12 +39222,12 @@ module.exports = ShotCardController;
 
 const angular = __webpack_require__(0);
 
-const GifPlayerDirective = __webpack_require__(23);
+const GifPlayerDirective = __webpack_require__(17);
 
 angular.module('drabbble').directive('gifPlayer', GifPlayerDirective);
 
 /***/ }),
-/* 23 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -39343,7 +39260,145 @@ const GifPlayer = function () {
 module.exports = GifPlayer;
 
 /***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+const angular = __webpack_require__(0);
+
+const ShotCardDirective = __webpack_require__(19);
+const ShotsListDirective = __webpack_require__(21);
+
+angular.module('drabbble').directive('shotCard', ShotCardDirective);
+
+angular.module('drabbble').directive('shotsList', function () {
+    return {
+        replace: true,
+        template: __webpack_require__(1),
+        controller: 'shotsController'
+    };
+});
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+const ShotCardDirective = function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            shot: '=shot'
+        },
+        template: __webpack_require__(20),
+        controller: 'shotCardController'
+    };
+};
+
+module.exports = ShotCardDirective;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"card-container hover-position-shadow\">\n    <img class=\"card-img\"\n         ng-src=\"{{shot.images.normal}}\"\n         alt=\"{{shot.title}}\"\n         gif-player\n    />\n    <h4>{{ shot.title }}</h4>\n</div>";
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+const ShotsListDirective = function () {
+    return {
+        replace: true,
+        templateUrl: __webpack_require__(1),
+        controller: 'shotsController'
+    };
+};
+
+module.exports = ShotsListDirective;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-29.
+ */
+
+const angular = __webpack_require__(0);
+
+const Controller = __webpack_require__(23);
+Controller.$inject = ['$scope'];
+
+angular.module('drabbble').controller('applicationController', Controller);
+
+const ShotsController = __webpack_require__(24);
+ShotsController.$inject = ['$scope', 'dribbbleWebService'];
+
+angular.module('drabbble').controller('shotsController', ShotsController);
+
+const ShotCardController = __webpack_require__(25);
+ShotCardController.$inject = ['$scope'];
+
+angular.module('drabbble').controller('shotCardController', ShotCardController);
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+/**
+ * Created by dannyyassine on 2017-11-29.
+ */
+
+function ApplicationController($scope) {
+  $scope.title = "Hello world";
+};
+
+module.exports = ApplicationController;
+
+/***/ }),
 /* 24 */
+/***/ (function(module, exports) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+function ShotsController($scope, dribbbleWebService) {
+    $scope.isLoaded = false;
+
+    dribbbleWebService.getShots(data => {
+        $scope.shots = data;
+        $scope.isLoaded = true;
+    });
+};
+
+module.exports = ShotsController;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+const ShotCardController = function ($scope) {};
+
+module.exports = ShotCardController;
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -39351,38 +39406,32 @@ module.exports = GifPlayer;
  */
 const angular = __webpack_require__(0);
 
-const FadeDirective = __webpack_require__(25);
+const HomeDirective = __webpack_require__(27);
 
-angular.module('drabbble').directive('dyFade', FadeDirective);
+angular.module('drabbble').directive('home', HomeDirective);
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports) {
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by dannyyassine on 2017-12-01.
  */
-
-const FadeDirective = function () {
-    let directive = {
-        link: link,
-        restrict: 'A'
+const HomeDirective = function () {
+    return {
+        restrict: 'EA',
+        scope: {},
+        template: __webpack_require__(28)
     };
-
-    function link(scope, element, attr) {
-        let indexCount = attr.index;
-        let raw = element[0];
-        raw.style.opacity = 0.0;
-        raw.style.animationDuration = `0.3s`;
-        raw.style.animationDelay = `${0.05 * indexCount}s`;
-        raw.classList.add('fade-in-scale-bottom');
-        console.log(indexCount);
-    }
-
-    return directive;
 };
 
-module.exports = FadeDirective;
+module.exports = HomeDirective;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"main-content-layout home\">\n    <h1>AngularJS Dribbble Client</h1>\n</div>";
 
 /***/ })
 /******/ ]);

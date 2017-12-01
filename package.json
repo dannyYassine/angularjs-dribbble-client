@@ -27,6 +27,11 @@
     "nunjucks": "^3.0.1"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.2",
+    "gulp-sourcemaps": "^2.6.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "webpack": "^3"
   },
   "author": "",
