@@ -1,5 +1,5 @@
- <div class="card-container" ng-class="{'fade-in-bottom': isLoaded}">
+ <div class="card-container">
     <div ng-repeat="shot in shots" class="card">
-        <div shot-card shot="shot"></div>
+        <div shot-card shot="shot" dy-fade index="{{$index}}"></div>
     </div>
 </div>

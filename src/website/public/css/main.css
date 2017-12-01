@@ -1,5 +1,42 @@
 body {
     background: ghostwhite;
+    margin: 0;
+}
+
+.header-nav {
+    display: block;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.header-nav li {
+    float: left;
+}
+
+.header-nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.header-nav li a:hover {
+    background-color: #111;
+}
+
+.hidden {
+    opacity: 0;
 }
 
 .card-container {
@@ -116,4 +153,25 @@ body {
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
     animation-name: fade-in-bottom-anim;
+}
+
+@keyframes fade-in-scale-bottom-anim {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale3d(0.9, 0.9, 1);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px) scale3d(1, 1, 1);
+    }
+}
+
+.fade-in-scale-bottom {
+    animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-name: fade-in-scale-bottom-anim;
 }

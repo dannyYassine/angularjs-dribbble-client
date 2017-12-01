@@ -39051,7 +39051,7 @@ angular.module('drabbble').component('myApp', {
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"applicationController\">\n    <div>\n        <a ui-sref=\"home\">Home</a>\n        <a ui-sref=\"shots\">Shots</a>\n        <a ui-sref=\"profile\">Profile</a>\n    </div>\n    <div ui-view></div>\n</div>";
+module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\">Home</a></li>\n            <li><a ui-sref=\"shots\">Shots</a></li>\n            <li><a ui-sref=\"profile\">Profile</a></li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div ui-view></div>\n</div>";
 
 /***/ }),
 /* 8 */
@@ -39113,7 +39113,8 @@ function DribbbleRequest() {
     this.baseURL = 'https://api.dribbble.com/v1';
     const accessToken = 'f0f2799e131f9e82942d9c8af209cbcbc176cdd5c12619e5161c7f1fdf4ded55';
     this.params = {
-        access_token: accessToken
+        access_token: accessToken,
+        list: 'animated'
     };
     this.endpoint = '';
 }
@@ -39145,6 +39146,7 @@ module.exports = DribbbleRequest;
  * Created by dannyyassine on 2017-11-30.
  */
 
+__webpack_require__(24);
 __webpack_require__(22);
 __webpack_require__(12);
 
@@ -39220,7 +39222,7 @@ module.exports = ShotsListDirective;
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = " <div class=\"card-container\" ng-class=\"{'fade-in-bottom': isLoaded}\">\n    <div ng-repeat=\"shot in shots\" class=\"card\">\n        <div shot-card shot=\"shot\"></div>\n    </div>\n</div>";
+module.exports = " <div class=\"card-container\">\n    <div ng-repeat=\"shot in shots\" class=\"card\">\n        <div shot-card shot=\"shot\" dy-fade index=\"{{$index}}\"></div>\n    </div>\n</div>";
 
 /***/ }),
 /* 17 */
@@ -39339,6 +39341,48 @@ const GifPlayer = function () {
 };
 
 module.exports = GifPlayer;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
+const angular = __webpack_require__(0);
+
+const FadeDirective = __webpack_require__(25);
+
+angular.module('drabbble').directive('dyFade', FadeDirective);
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
+
+const FadeDirective = function () {
+    let directive = {
+        link: link,
+        restrict: 'A'
+    };
+
+    function link(scope, element, attr) {
+        let indexCount = attr.index;
+        let raw = element[0];
+        raw.style.opacity = 0.0;
+        raw.style.animationDuration = `0.3s`;
+        raw.style.animationDelay = `${0.05 * indexCount}s`;
+        raw.classList.add('fade-in-scale-bottom');
+        console.log(indexCount);
+    }
+
+    return directive;
+};
+
+module.exports = FadeDirective;
 
 /***/ })
 /******/ ]);
