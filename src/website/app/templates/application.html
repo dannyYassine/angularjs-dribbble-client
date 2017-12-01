@@ -1,9 +1,14 @@
 <div ng-controller="applicationController">
     <div class="header-nav">
         <ul>
-            <li><a ui-sref="home">Home</a></li>
-            <li><a ui-sref="shots">Shots</a></li>
-            <li><a ui-sref="profile">Profile</a></li>
+            <li><a ui-sref="home" ui-sref-active="nav-btn-active">Home</a></li>
+            <li><a ui-sref="shots" ui-sref-active="nav-btn-active">Shots</a></li>
+            <li><a ui-sref="profile" ui-sref-active="nav-btn-active">Profile</a></li>
+            <li class="right-btn" ui-sref-active="nav-btn-active"><a href="https://github.com/dannyYassine/angularjs-dribbble-client"
+                   target="_blank">
+                <img class="right-btn-img" src="/assets/github-white.png"/>
+                </a>
+            </li>
         </ul>
     </div>
     <br>
@@ -12,4 +17,6 @@
     <br>
     <br>
     <div ui-view></div>
+
+    <div footer></div>
 </div>

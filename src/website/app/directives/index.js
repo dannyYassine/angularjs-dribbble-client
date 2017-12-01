@@ -3,6 +3,7 @@
  */
 
 require('./home');
+require('./footer');
 require('./fade');
 require('./gif');
 require('./shots');

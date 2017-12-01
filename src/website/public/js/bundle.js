@@ -39070,7 +39070,7 @@ module.exports = ApplicationComponent;
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\">Home</a></li>\n            <li><a ui-sref=\"shots\">Shots</a></li>\n            <li><a ui-sref=\"profile\">Profile</a></li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div ui-view></div>\n</div>";
+module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\" ui-sref-active=\"nav-btn-active\">Home</a></li>\n            <li><a ui-sref=\"shots\" ui-sref-active=\"nav-btn-active\">Shots</a></li>\n            <li><a ui-sref=\"profile\" ui-sref-active=\"nav-btn-active\">Profile</a></li>\n            <li class=\"right-btn\" ui-sref-active=\"nav-btn-active\"><a href=\"https://github.com/dannyYassine/angularjs-dribbble-client\"\n                   target=\"_blank\">\n                <img class=\"right-btn-img\" src=\"/assets/github-white.png\"/>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div ui-view></div>\n\n    <div footer></div>\n</div>";
 
 /***/ }),
 /* 10 */
@@ -39097,6 +39097,8 @@ let DribbbleRequest = __webpack_require__(12);
 
 const DribbbleWebService = function ($http) {
 
+    let cachedShots = [];
+
     const executeGet = request => {
         return $http.get(request.query());
     };
@@ -39109,12 +39111,24 @@ const DribbbleWebService = function ($http) {
         let request = new DribbbleRequest();
         request.setEnpoint('shots');
         executeGet(request).then(response => {
+            cachedShots = [response.data];
             callback(response.data);
         });
     };
 
+    const getShotsWithId = (id, callback) => {
+        const shot = cachedShots.filter(shot => {
+            return shot.identifier === id;
+        })[0];
+        if (shot) {
+            callback(shot);
+        }
+        // fetch shot
+    };
+
     return {
-        getShots
+        getShots,
+        getShotsWithId
     };
 };
 
@@ -39166,6 +39180,7 @@ module.exports = DribbbleRequest;
  */
 
 __webpack_require__(26);
+__webpack_require__(29);
 __webpack_require__(14);
 __webpack_require__(16);
 __webpack_require__(18);
@@ -39432,6 +39447,41 @@ module.exports = HomeDirective;
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"main-content-layout home\">\n    <h1>AngularJS Dribbble Client</h1>\n</div>";
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
+const angular = __webpack_require__(0);
+
+const FooterDirective = __webpack_require__(30);
+
+angular.module('drabbble').directive('footer', FooterDirective);
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
+const FooterDirective = function () {
+    return {
+        restrict: 'EA',
+        template: __webpack_require__(31)
+    };
+};
+
+module.exports = FooterDirective;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"footer\">\n    <div class=\"footer-layout\">\n        <h4>AngularJS</h4>\n        <h4>Danny Yassine</h4>\n        <h4></h4>\n    </div>\n</div>";
 
 /***/ })
 /******/ ]);
