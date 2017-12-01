@@ -6,7 +6,8 @@ const HomeDirective = (function () {
         restrict: 'EA',
         scope: {
         },
-        template: require('../../templates/home.html')
+        template: require('../../templates/home.html'),
+        controller: 'homeController'
     };
 });
 

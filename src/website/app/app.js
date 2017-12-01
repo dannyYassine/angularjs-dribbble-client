@@ -46,7 +46,7 @@ app.config(function($stateProvider) {
     const profileState = {
         name: 'profile',
         url: '/profile',
-        template: '<h3>Its the UI-Router hello world app!</h3>'
+        template: '<div shots-list></div>'
     };
 
     $stateProvider.state(homeState);

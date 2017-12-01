@@ -21,3 +21,9 @@ ShotCardController.$inject = ['$scope'];
 
 angular.module('drabbble')
     .controller('shotCardController', ShotCardController);
+
+const HomeController = require('./home.controller');
+HomeController.$inject = ['$scope'];
+
+angular.module('drabbble')
+    .controller('homeController', HomeController);

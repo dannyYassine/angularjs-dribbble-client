@@ -11,18 +11,19 @@
     "nodemon": "nodemon src/server/server.js"
   },
   "dependencies": {
-    "body-parser": "",
     "angular": "",
     "angular-ui-router": "^0.4.2",
-    "express": "",
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^7",
+    "babel-preset-env": "",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-env": "",
-    "html-loader": "",
+    "body-parser": "",
+    "chart.js": "^2.7.1",
+    "express": "",
     "forever": "^0.15.3",
+    "html-loader": "",
     "nodemon": "^1.11.0",
     "nunjucks": "^3.0.1"
   },
