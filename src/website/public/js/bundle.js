@@ -17321,6 +17321,8 @@ __webpack_require__(129);
 /* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
 
 __webpack_require__(130);
 
@@ -69911,8 +69913,8 @@ module.exports = function(Chart) {
 let ShotDetailViewModel = __webpack_require__(213);
 
 function ShotDetailController($scope, shot) {
-  $scope.vm = new ShotDetailViewModel(shot);
-};
+  $scope.vm = ShotDetailViewModel(shot);
+}
 
 module.exports = ShotDetailController;
 

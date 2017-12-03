@@ -5,7 +5,7 @@
 let ShotDetailViewModel = require('./viewModels/shotDetailViewModel');
 
 function ShotDetailController ($scope, shot) {
-    $scope.vm = new ShotDetailViewModel(shot);
-};
+    $scope.vm = ShotDetailViewModel(shot);
+}
 
 module.exports = ShotDetailController;
