@@ -56315,7 +56315,7 @@ module.exports = ApplicationComponent;
 /* 135 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\" ui-sref-active=\"nav-btn-active\">Home</a></li>\n            <li><a ui-sref=\"shots\" ui-sref-active=\"nav-btn-active\">Shots</a></li>\n            <li><a ui-sref=\"profile\" ui-sref-active=\"nav-btn-active\">Profile</a></li>\n            <li class=\"right-btn\" ui-sref-active=\"nav-btn-active\"><a href=\"https://github.com/dannyYassine/angularjs-dribbble-client\"\n                   target=\"_blank\">\n                <img class=\"right-btn-img\" src=\"/assets/github-white.png\"/>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div class=\"full-height\" ui-view></div>\n\n    <div footer></div>\n</div>";
+module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\" ui-sref-active=\"nav-btn-active\">Home</a></li>\n            <li><a ui-sref=\"shots\" ui-sref-active=\"nav-btn-active\">Shots</a></li>\n            <li class=\"right-btn\" ui-sref-active=\"nav-btn-active\"><a href=\"https://github.com/dannyYassine/angularjs-dribbble-client\"\n                   target=\"_blank\">\n                <img class=\"right-btn-img\" src=\"/assets/github-white.png\"/>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div class=\"full-height\" ui-view></div>\n\n    <div footer></div>\n</div>";
 
 /***/ }),
 /* 136 */
