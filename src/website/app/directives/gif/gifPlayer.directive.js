@@ -9,6 +9,9 @@ const GifPlayer = (function () {
     };
 
     function link (scope, element, attr) {
+        if (scope.shot.images.hidpi === null) {
+            return;
+        }
         if (!scope.shot.images.hidpi.endsWith('gif')) {
             return;
         }

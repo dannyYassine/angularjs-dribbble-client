@@ -6,21 +6,18 @@ let DribbbleRequest = require('../helpers/dribbbleRequest');
 
 const DribbbleWebService = (function ($http) {
 
-    let cachedShots = [];
-
-    const executeGet = (request) => {
+    const GET = (request) => {
         return $http.get(request.query());
     };
 
-    const executePost = (request) => {
+    const POST = (request) => {
         return $http.post(request.query());
     };
 
     const getShots = (callback) => {
         let request = new DribbbleRequest();
         request.setEnpoint('shots');
-        executeGet(request).then(response => {
-            cachedShots = [response.data];
+        GET(request).then(response => {
             callback(response.data);
         });
     };
@@ -32,13 +29,13 @@ const DribbbleWebService = (function ($http) {
         if (shot) {
             callback(shot);
         }
-        // fetch shot
-
     };
 
     return {
         getShots,
-        getShotsWithId
+        getShotsWithId,
+        GET,
+        POST
     }
 
 });

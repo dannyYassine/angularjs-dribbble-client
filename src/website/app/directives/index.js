@@ -7,3 +7,4 @@ require('./footer');
 require('./fade');
 require('./gif');
 require('./shots');
+require('./shotDetail');

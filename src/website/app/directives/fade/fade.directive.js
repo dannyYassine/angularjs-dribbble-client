@@ -15,7 +15,6 @@ const FadeDirective = (function () {
        raw.style.animationDuration = `0.3s`;
        raw.style.animationDelay = `${0.05 * indexCount}s`;
        raw.classList.add('fade-in-scale-bottom');
-       console.log(indexCount);
    }
 
    return directive;

@@ -19,7 +19,6 @@ require('./controllers');
         .config(configLocationProvider)
         .config(configRouterProvider);
 
-
 configLocationProvider.$inject = ['$locationProvider'];
 function configLocationProvider ($locationProvider) {
     $locationProvider.html5Mode(true);
@@ -43,6 +42,18 @@ app.config(function($stateProvider) {
         template: '<div shots-list></div>'
     };
 
+    const shotDetailState = {
+        name: 'shotDetail',
+        url: '/shots/{id}',
+        template: '<div shot-detail></div>',
+        controller: 'shotDetailController',
+        resolve: {
+            shot: function ($stateParams, shotsService) {
+                return shotsService.getShotWithId($stateParams.id)
+            }
+        }
+    };
+
     const profileState = {
         name: 'profile',
         url: '/profile',
@@ -51,6 +62,7 @@ app.config(function($stateProvider) {
 
     $stateProvider.state(homeState);
     $stateProvider.state(defaultShotsState);
+    $stateProvider.state(shotDetailState);
     $stateProvider.state(profileState);
 });
 

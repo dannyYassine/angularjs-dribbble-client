@@ -21,6 +21,10 @@ DribbbleRequest.prototype.setPerPage = function (perPage) {
     this.params['per_page'] = perPage;
 };
 
+DribbbleRequest.prototype.addPath = function (path) {
+    this.endpoint = this.endpoint + "/" + path
+};
+
 DribbbleRequest.prototype.query = function () {
     let query = `${this.endpoint}?`;
     let index = 0;

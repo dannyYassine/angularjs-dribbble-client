@@ -7,23 +7,21 @@ const angular = require('angular');
 const Controller = require('./application.controller');
 Controller.$inject = ['$scope'];
 
-angular.module('drabbble')
-    .controller('applicationController', Controller);
-
 const ShotsController = require('./shots.controller');
 ShotsController.$inject = ['$scope', 'dribbbleWebService'];
-
-angular.module('drabbble')
-    .controller('shotsController', ShotsController);
 
 const ShotCardController = require('./shotCard.controller');
 ShotCardController.$inject = ['$scope'];
 
-angular.module('drabbble')
-    .controller('shotCardController', ShotCardController);
-
 const HomeController = require('./home.controller');
 HomeController.$inject = ['$scope'];
 
+const ShotDetailController = require('./shotDetail.controller');
+
 angular.module('drabbble')
-    .controller('homeController', HomeController);
+    .controller('applicationController', Controller)
+    .controller('shotsController', ShotsController)
+    .controller('shotCardController', ShotCardController)
+    .controller('homeController', HomeController)
+    .controller('shotDetailController', ShotDetailController);
+

@@ -9,6 +9,6 @@ function ShotsController ($scope, dribbbleWebService) {
         $scope.shots = data;
         $scope.isLoaded = true;
     });
-};
+}
 
 module.exports = ShotsController;
