@@ -811,9 +811,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      *
      * @example
      * <pre>
-     * var app angular.module('app', ['ui.router']);
+     * var client angular.module('client', ['ui.router']);
      *
-     * app.controller('ctrl', function ($scope, $state) {
+     * client.controller('ctrl', function ($scope, $state) {
      *   $scope.reload = function(){
      *     $state.reload();
      *   }
@@ -830,11 +830,11 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      * @param {string=|object=} state - A state name or a state object, which is the root of the resolves to be re-resolved.
      * @example
      * <pre>
-     * //assuming app application consists of 3 states: 'contacts', 'contacts.detail', 'contacts.detail.item' 
+     * //assuming client application consists of 3 states: 'contacts', 'contacts.detail', 'contacts.detail.item'
      * //and current state is 'contacts.detail.item'
-     * var app angular.module('app', ['ui.router']);
+     * var client angular.module('client', ['ui.router']);
      *
-     * app.controller('ctrl', function ($scope, $state) {
+     * client.controller('ctrl', function ($scope, $state) {
      *   $scope.reload = function(){
      *     //will reload 'contact.detail' and 'contact.detail.item' states
      *     $state.reload('contact.detail');
@@ -871,9 +871,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      *
      * @example
      * <pre>
-     * var app = angular.module('app', ['ui.router']);
+     * var client = angular.module('client', ['ui.router']);
      *
-     * app.controller('ctrl', function ($scope, $state) {
+     * client.controller('ctrl', function ($scope, $state) {
      *   $scope.changeState = function () {
      *     $state.go('contact.detail');
      *   };
@@ -939,9 +939,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
      *
      * @example
      * <pre>
-     * var app = angular.module('app', ['ui.router']);
+     * var client = angular.module('client', ['ui.router']);
      *
-     * app.controller('ctrl', function ($scope, $state) {
+     * client.controller('ctrl', function ($scope, $state) {
      *   $scope.changeState = function () {
      *     $state.transitionTo('contact.detail');
      *   };

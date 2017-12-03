@@ -1,0 +1,13 @@
+<div class="main-content-layout shot-detail corner-5">
+    <div class="shot-detail-header-container">
+        <h1>{{shotVM.title}}</h1>
+        <img class="shot-detail-profile" ng-src="{{shotVM.rightHeaderImg}}"/>
+    </div>
+    <img class="shot-detail-img" ng-src="{{shotVM.highRes()}}" alt="{{vm.title}} image">
+    <div>
+        <div ng-repeat="comment in comments">
+            <img class="img-border shot-detail-img-comment" ng-src="{{comment.user.avatar_url}}" alt="image"/>
+            {{comment.body}}
+        </div>
+    </div>
+</div>

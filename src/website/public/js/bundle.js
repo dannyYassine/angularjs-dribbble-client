@@ -1896,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(193)("./" + name);
+            __webpack_require__(194)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4531,7 +4531,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(192)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(193)(module)))
 
 /***/ }),
 /* 1 */
@@ -4541,9 +4541,9 @@ return hooks;
 
 
 module.exports = __webpack_require__(7);
-module.exports.easing = __webpack_require__(164);
-module.exports.canvas = __webpack_require__(165);
-module.exports.options = __webpack_require__(166);
+module.exports.easing = __webpack_require__(165);
+module.exports.canvas = __webpack_require__(166);
+module.exports.options = __webpack_require__(167);
 
 
 /***/ }),
@@ -4703,10 +4703,10 @@ module.exports = angular;
 
 
 module.exports = {};
-module.exports.Arc = __webpack_require__(172);
-module.exports.Line = __webpack_require__(173);
-module.exports.Point = __webpack_require__(174);
-module.exports.Rectangle = __webpack_require__(175);
+module.exports.Arc = __webpack_require__(173);
+module.exports.Line = __webpack_require__(174);
+module.exports.Point = __webpack_require__(175);
+module.exports.Rectangle = __webpack_require__(176);
 
 
 /***/ }),
@@ -5323,8 +5323,8 @@ module.exports = " <div class=\"card-list-container main-content-layout\">\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(168);
-var string = __webpack_require__(170);
+var convert = __webpack_require__(169);
+var string = __webpack_require__(171);
 
 var Color = function (obj) {
 	if (obj instanceof Color) {
@@ -6154,8 +6154,8 @@ module.exports = {
 
 
 var helpers = __webpack_require__(1);
-var basic = __webpack_require__(176);
-var dom = __webpack_require__(177);
+var basic = __webpack_require__(177);
+var dom = __webpack_require__(178);
 
 // @TODO Make possible to select another platform at build time.
 var implementation = dom._enabled ? dom : basic;
@@ -17347,8 +17347,8 @@ let app = __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('drabbble', [__
 
 __webpack_require__(133);
 __webpack_require__(136);
-__webpack_require__(139);
-__webpack_require__(157);
+__webpack_require__(140);
+__webpack_require__(158);
 
 app.config(configLocationProvider).config(configRouterProvider);
 
@@ -56328,8 +56328,9 @@ module.exports = "<div ng-controller=\"applicationController\">\n    <div class=
 const angular = __webpack_require__(4);
 const DribbbleWebService = __webpack_require__(137);
 const ShotsService = __webpack_require__(138);
+const ShotCommentsService = __webpack_require__(139);
 
-angular.module('drabbble').service('dribbbleWebService', DribbbleWebService).service('shotsService', ShotsService);
+angular.module('drabbble').service('dribbbleWebService', DribbbleWebService).service('shotsService', ShotsService).service('shotCommentsService', ShotCommentsService);
 
 /***/ }),
 /* 137 */
@@ -56437,15 +56438,56 @@ module.exports = ShotsService;
  * Created by dannyyassine on 2017-11-30.
  */
 
-__webpack_require__(140);
-__webpack_require__(143);
-__webpack_require__(146);
-__webpack_require__(148);
-__webpack_require__(150);
-__webpack_require__(154);
+let DribbbleRequest = __webpack_require__(8);
+
+const ShotCommentsService = function ($http) {
+
+    const GET = request => {
+        return $http.get(request.query());
+    };
+
+    const POST = request => {
+        return $http.post(request.query());
+    };
+
+    const getCommentWithId = id => {
+        return new Promise(function (resolve, reject) {
+            let request = new DribbbleRequest();
+            request.setEnpoint('shots');
+            request.addPath(`${id}`);
+            request.addPath('comments');
+            GET(request).then(response => {
+                resolve(response.data);
+            }).catch(reject);
+        });
+    };
+
+    return {
+        getCommentWithId,
+        GET,
+        POST
+    };
+};
+
+module.exports = ShotCommentsService;
 
 /***/ }),
 /* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-11-30.
+ */
+
+__webpack_require__(141);
+__webpack_require__(144);
+__webpack_require__(147);
+__webpack_require__(149);
+__webpack_require__(151);
+__webpack_require__(155);
+
+/***/ }),
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56453,12 +56495,12 @@ __webpack_require__(154);
  */
 const angular = __webpack_require__(4);
 
-const HomeDirective = __webpack_require__(141);
+const HomeDirective = __webpack_require__(142);
 
 angular.module('drabbble').directive('home', HomeDirective);
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56468,7 +56510,7 @@ const HomeDirective = function () {
     return {
         restrict: 'EA',
         scope: {},
-        template: __webpack_require__(142),
+        template: __webpack_require__(143),
         controller: 'homeController'
     };
 };
@@ -56476,23 +56518,10 @@ const HomeDirective = function () {
 module.exports = HomeDirective;
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"main-content-layout home corner-5\">\n    <h1>Integrate 3rd party libs</h1>\n    <p><a href=\"http://www.chartjs.org/\" target=\"_blank\">Chart.js</a></p>\n    <canvas id=\"myChart\"></canvas>\n    <canvas id=\"bubbleChart\"></canvas>\n</div>";
-
-/***/ }),
-/* 143 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Created by dannyyassine on 2017-12-01.
- */
-const angular = __webpack_require__(4);
-
-const FooterDirective = __webpack_require__(144);
-
-angular.module('drabbble').directive('footer', FooterDirective);
 
 /***/ }),
 /* 144 */
@@ -56501,23 +56530,36 @@ angular.module('drabbble').directive('footer', FooterDirective);
 /**
  * Created by dannyyassine on 2017-12-01.
  */
+const angular = __webpack_require__(4);
+
+const FooterDirective = __webpack_require__(145);
+
+angular.module('drabbble').directive('footer', FooterDirective);
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Created by dannyyassine on 2017-12-01.
+ */
 const FooterDirective = function () {
     return {
         restrict: 'EA',
-        template: __webpack_require__(145)
+        template: __webpack_require__(146)
     };
 };
 
 module.exports = FooterDirective;
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"footer\">\n    <div class=\"footer-layout\">\n        <h4>AngularJS Dribbble Client and more!</h4>\n        <h4>Danny Yassine</h4>\n        <h4></h4>\n    </div>\n</div>";
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56525,12 +56567,12 @@ module.exports = "<div class=\"footer\">\n    <div class=\"footer-layout\">\n   
  */
 const angular = __webpack_require__(4);
 
-const FadeDirective = __webpack_require__(147);
+const FadeDirective = __webpack_require__(148);
 
 angular.module('drabbble').directive('dyFade', FadeDirective);
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports) {
 
 /**
@@ -56558,7 +56600,7 @@ const FadeDirective = function () {
 module.exports = FadeDirective;
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56567,12 +56609,12 @@ module.exports = FadeDirective;
 
 const angular = __webpack_require__(4);
 
-const GifPlayerDirective = __webpack_require__(149);
+const GifPlayerDirective = __webpack_require__(150);
 
 angular.module('drabbble').directive('gifPlayer', GifPlayerDirective);
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports) {
 
 /**
@@ -56608,7 +56650,7 @@ const GifPlayer = function () {
 module.exports = GifPlayer;
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56617,8 +56659,8 @@ module.exports = GifPlayer;
 
 const angular = __webpack_require__(4);
 
-const ShotCardDirective = __webpack_require__(151);
-const ShotsListDirective = __webpack_require__(153);
+const ShotCardDirective = __webpack_require__(152);
+const ShotsListDirective = __webpack_require__(154);
 
 angular.module('drabbble').directive('shotCard', ShotCardDirective);
 
@@ -56631,7 +56673,7 @@ angular.module('drabbble').directive('shotsList', function () {
 });
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56644,7 +56686,7 @@ const ShotCardDirective = function () {
         scope: {
             shot: '=shot'
         },
-        template: __webpack_require__(152),
+        template: __webpack_require__(153),
         controller: 'shotCardController'
     };
 };
@@ -56652,13 +56694,13 @@ const ShotCardDirective = function () {
 module.exports = ShotCardDirective;
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card-container hover-position-shadow\">\n    <a ui-sref=\"shotDetail({ id: shot.id })\">\n    <img class=\"card-img\"\n             ng-src=\"{{shot.images.normal}}\"\n             alt=\"{{shot.title}}\"\n             gif-player\n        />\n        <h4>{{ shot.title }}</h4>\n    </a>\n</div>";
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56676,7 +56718,7 @@ const ShotsListDirective = function () {
 module.exports = ShotsListDirective;
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56689,12 +56731,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const ShotDetailDirective = __webpack_require__(155);
+const ShotDetailDirective = __webpack_require__(156);
 
 __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('drabbble').directive('shotDetail', ShotDetailDirective);
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56705,20 +56747,20 @@ const ShotDetailDirective = function () {
     return {
         restrict: 'EA',
         replace: true,
-        template: __webpack_require__(156)
+        template: __webpack_require__(157)
     };
 };
 
 module.exports = ShotDetailDirective;
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content-layout shot-detail corner-5\">\n    <h1>{{vm.title}}</h1>\n    <img ng-src=\"{{vm.highRes()}}\" alt=\"{{vm.title}} image\">\n</div>";
+module.exports = "<div class=\"main-content-layout shot-detail corner-5\">\n    <div class=\"shot-detail-header-container\">\n        <h1>{{shotVM.title}}</h1>\n        <img class=\"shot-detail-profile\" ng-src=\"{{shotVM.rightHeaderImg}}\"/>\n    </div>\n    <img class=\"shot-detail-img\" ng-src=\"{{shotVM.highRes()}}\" alt=\"{{vm.title}} image\">\n    <div>\n        <div ng-repeat=\"comment in comments\">\n            <img class=\"img-border shot-detail-img-comment\" ng-src=\"{{comment.user.avatar_url}}\" alt=\"image\"/>\n            {{comment.body}}\n        </div>\n    </div>\n</div>";
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -56727,24 +56769,25 @@ module.exports = "<div class=\"main-content-layout shot-detail corner-5\">\n    
 
 const angular = __webpack_require__(4);
 
-const Controller = __webpack_require__(158);
+const Controller = __webpack_require__(159);
 Controller.$inject = ['$scope'];
 
-const ShotsController = __webpack_require__(159);
+const ShotsController = __webpack_require__(160);
 ShotsController.$inject = ['$scope', 'dribbbleWebService'];
 
-const ShotCardController = __webpack_require__(160);
+const ShotCardController = __webpack_require__(161);
 ShotCardController.$inject = ['$scope'];
 
-const HomeController = __webpack_require__(161);
+const HomeController = __webpack_require__(162);
 HomeController.$inject = ['$scope'];
 
-const ShotDetailController = __webpack_require__(211);
+const ShotDetailController = __webpack_require__(212);
+ShotCardController.$inject = ['$scope', 'shotCommentsService'];
 
 angular.module('drabbble').controller('applicationController', Controller).controller('shotsController', ShotsController).controller('shotCardController', ShotCardController).controller('homeController', HomeController).controller('shotDetailController', ShotDetailController);
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports) {
 
 /**
@@ -56758,7 +56801,7 @@ function ApplicationController($scope) {
 module.exports = ApplicationController;
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports) {
 
 /**
@@ -56777,7 +56820,7 @@ function ShotsController($scope, dribbbleWebService) {
 module.exports = ShotsController;
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports) {
 
 /**
@@ -56789,14 +56832,14 @@ const ShotCardController = function ($scope) {};
 module.exports = ShotCardController;
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Created by dannyyassine on 2017-12-01.
  */
 
-const Chart = __webpack_require__(162);
+const Chart = __webpack_require__(163);
 
 let HomeController = function () {
 
@@ -56851,18 +56894,18 @@ let HomeController = function () {
 module.exports = HomeController;
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace Chart
  */
-var Chart = __webpack_require__(163)();
+var Chart = __webpack_require__(164)();
 
 Chart.helpers = __webpack_require__(1);
 
 // @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
-__webpack_require__(167)(Chart);
+__webpack_require__(168)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(3);
@@ -56870,7 +56913,6 @@ Chart.elements = __webpack_require__(5);
 Chart.Interaction = __webpack_require__(11);
 Chart.platform = __webpack_require__(12);
 
-__webpack_require__(178)(Chart);
 __webpack_require__(179)(Chart);
 __webpack_require__(180)(Chart);
 __webpack_require__(181)(Chart);
@@ -56878,39 +56920,40 @@ __webpack_require__(182)(Chart);
 __webpack_require__(183)(Chart);
 __webpack_require__(184)(Chart);
 __webpack_require__(185)(Chart);
-
 __webpack_require__(186)(Chart);
+
 __webpack_require__(187)(Chart);
 __webpack_require__(188)(Chart);
 __webpack_require__(189)(Chart);
 __webpack_require__(190)(Chart);
 __webpack_require__(191)(Chart);
+__webpack_require__(192)(Chart);
 
 // Controllers must be loaded after elements
 // See Chart.core.datasetController.dataElementType
-__webpack_require__(194)(Chart);
 __webpack_require__(195)(Chart);
 __webpack_require__(196)(Chart);
 __webpack_require__(197)(Chart);
 __webpack_require__(198)(Chart);
 __webpack_require__(199)(Chart);
 __webpack_require__(200)(Chart);
-
 __webpack_require__(201)(Chart);
+
 __webpack_require__(202)(Chart);
 __webpack_require__(203)(Chart);
 __webpack_require__(204)(Chart);
 __webpack_require__(205)(Chart);
 __webpack_require__(206)(Chart);
 __webpack_require__(207)(Chart);
+__webpack_require__(208)(Chart);
 
 // Loading built-it plugins
 var plugins = [];
 
 plugins.push(
-	__webpack_require__(208)(Chart),
 	__webpack_require__(209)(Chart),
-	__webpack_require__(210)(Chart)
+	__webpack_require__(210)(Chart),
+	__webpack_require__(211)(Chart)
 );
 
 Chart.plugins.register(plugins);
@@ -56935,7 +56978,7 @@ Chart.canvasHelpers = Chart.helpers.canvas;
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56991,7 +57034,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57248,7 +57291,7 @@ helpers.easingEffects = effects;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57469,7 +57512,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57572,7 +57615,7 @@ module.exports = {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58182,10 +58225,10 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(169);
+var conversions = __webpack_require__(170);
 
 var convert = function() {
    return new Converter();
@@ -58279,7 +58322,7 @@ Converter.prototype.getValues = function(space) {
 module.exports = convert;
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports) {
 
 /* MIT license */
@@ -58983,11 +59026,11 @@ for (var key in cssKeywords) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(171);
+var colorNames = __webpack_require__(172);
 
 module.exports = {
    getRgba: getRgba,
@@ -59210,7 +59253,7 @@ for (var name in colorNames) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59369,7 +59412,7 @@ module.exports = {
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59483,7 +59526,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59581,7 +59624,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59694,7 +59737,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59918,7 +59961,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /**
@@ -59939,7 +59982,7 @@ module.exports = {
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60403,7 +60446,7 @@ helpers.removeEvent = removeEventListener;
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60805,7 +60848,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60984,7 +61027,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61895,7 +61938,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62232,7 +62275,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62661,7 +62704,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62713,7 +62756,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63651,7 +63694,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64606,7 +64649,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64745,7 +64788,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64885,7 +64928,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65084,7 +65127,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65335,7 +65378,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65872,7 +65915,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66635,7 +66678,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -66663,7 +66706,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -66912,10 +66955,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 193;
+webpackContext.id = 194;
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67343,7 +67386,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67530,7 +67573,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67836,7 +67879,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68176,7 +68219,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68405,7 +68448,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68580,7 +68623,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68629,7 +68672,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68647,7 +68690,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68664,7 +68707,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68682,7 +68725,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68700,7 +68743,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68718,7 +68761,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68736,7 +68779,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68751,7 +68794,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69079,7 +69122,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69653,7 +69696,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69903,7 +69946,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -69912,14 +69955,19 @@ module.exports = function(Chart) {
 
 let ShotDetailViewModel = __webpack_require__(213);
 
-function ShotDetailController($scope, shot) {
-  $scope.vm = ShotDetailViewModel(shot);
+function ShotDetailController($scope, shot, shotCommentsService) {
+    $scope.shotVM = ShotDetailViewModel(shot);
+    $scope.comments = [];
+
+    shotCommentsService.getCommentWithId(shot.id).then(comments => {
+        $scope.comments = comments;
+        $scope.$apply();
+    });
 }
 
 module.exports = ShotDetailController;
 
 /***/ }),
-/* 212 */,
 /* 213 */
 /***/ (function(module, exports) {
 
@@ -69945,6 +69993,12 @@ const ShotDetailViewModel = function (shot) {
     Object.defineProperty(vm, 'title', {
         get: function () {
             return _shot.title;
+        }
+    });
+
+    Object.defineProperty(vm, 'rightHeaderImg', {
+        get: function () {
+            return _shot.user.avatar_url;
         }
     });
 

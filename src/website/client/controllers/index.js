@@ -17,6 +17,7 @@ const HomeController = require('./home.controller');
 HomeController.$inject = ['$scope'];
 
 const ShotDetailController = require('./shotDetail.controller');
+ShotCardController.$inject = ['$scope', 'shotCommentsService'];
 
 angular.module('drabbble')
     .controller('applicationController', Controller)

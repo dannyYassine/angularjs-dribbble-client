@@ -184,7 +184,7 @@ th {
   min-height: 100vh;
 }
 .main-content-layout {
-  margin: 0 auto;
+  margin: 40px auto;
   max-width: 1200px;
   width: 80%;
   padding: 20px;
@@ -314,6 +314,9 @@ body {
 .corner-5 {
   border-radius: 5px;
 }
+.img-border {
+  border: 5px hotpink;
+}
 .header-nav {
   display: block;
   width: 100%;
@@ -389,6 +392,35 @@ body {
 }
 .home {
   background: white;
+}
+.shot-detail {
+  background: white;
+}
+.shot-detail-img {
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 100%;
+}
+.shot-detail-header-container {
+  margin: 10px;
+  height: 50px;
+}
+.shot-detail-profile {
+  border-radius: 50px;
+  width: auto;
+  height: 100%;
+  border: 5px ghostwhite;
+  float: right;
+}
+.shot-detail h1 {
+  display: inline;
+  line-height: 100%;
+  text-align: center;
+}
+.shot-detail-img-comment {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 .footer {
   height: 200px;

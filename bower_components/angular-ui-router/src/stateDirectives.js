@@ -236,18 +236,18 @@ function $StateRefDynamicDirective($state, $timeout) {
  * <pre>
  * <ul>
  *   <li ui-sref-active="active" class="item">
- *     <a href ui-sref="app.user({user: 'bilbobaggins'})">@bilbobaggins</a>
+ *     <a href ui-sref="client.user({user: 'bilbobaggins'})">@bilbobaggins</a>
  *   </li>
  * </ul>
  * </pre>
  *
  *
- * When the app state is "app.user" (or any children states), and contains the state parameter "user" with value "bilbobaggins",
+ * When the client state is "client.user" (or any children states), and contains the state parameter "user" with value "bilbobaggins",
  * the resulting HTML will appear as (note the 'active' class):
  * <pre>
  * <ul>
  *   <li ui-sref-active="active" class="item active">
- *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/users/bilbobaggins">@bilbobaggins</a>
+ *     <a ui-sref="client.user({user: 'bilbobaggins'})" href="/users/bilbobaggins">@bilbobaggins</a>
  *   </li>
  * </ul>
  * </pre>
@@ -259,7 +259,7 @@ function $StateRefDynamicDirective($state, $timeout) {
  * <pre>
  * <ul>
  *   <li ui-sref-active='class1 class2 class3'>
- *     <a ui-sref="app.user">link</a>
+ *     <a ui-sref="client.user">link</a>
  *   </li>
  * </ul>
  * </pre>

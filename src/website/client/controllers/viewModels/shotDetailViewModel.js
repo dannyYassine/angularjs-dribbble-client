@@ -23,6 +23,12 @@ const ShotDetailViewModel = (function (shot) {
         }
     });
 
+    Object.defineProperty(vm, 'rightHeaderImg', {
+        get: function () {
+            return _shot.user.avatar_url;
+        }
+    });
+
     return vm;
 
 });
