@@ -17363,15 +17363,15 @@ function configRouterProvider($urlRouterProvider) {
 }
 
 app.config(function ($stateProvider) {
-    const homeState = {
-        name: 'home',
-        url: '/',
-        template: '<div home></div>'
-    };
+    // const homeState = {
+    //     name: 'home',
+    //     url: '/',
+    //     template: '<div home></div>'
+    // };
 
     const defaultShotsState = {
         name: 'shots',
-        url: '/shots',
+        url: '/',
         template: '<div shots-list></div>'
     };
 
@@ -17393,7 +17393,7 @@ app.config(function ($stateProvider) {
         template: '<div shots-list></div>'
     };
 
-    $stateProvider.state(homeState);
+    // $stateProvider.state(homeState);
     $stateProvider.state(defaultShotsState);
     $stateProvider.state(shotDetailState);
     $stateProvider.state(profileState);
@@ -56315,7 +56315,7 @@ module.exports = ApplicationComponent;
 /* 135 */
 /***/ (function(module, exports) {
 
-module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <li><a ui-sref=\"home\" ui-sref-active=\"nav-btn-active\">Home</a></li>\n            <li><a ui-sref=\"shots\" ui-sref-active=\"nav-btn-active\">Shots</a></li>\n            <li class=\"right-btn\" ui-sref-active=\"nav-btn-active\"><a href=\"https://github.com/dannyYassine/angularjs-dribbble-client\"\n                   target=\"_blank\">\n                <img class=\"right-btn-img\" src=\"/assets/github-white.png\"/>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div class=\"full-height\" ui-view></div>\n\n    <div footer></div>\n</div>";
+module.exports = "<div ng-controller=\"applicationController\">\n    <div class=\"header-nav\">\n        <ul>\n            <!--<li><a ui-sref=\"home\" ui-sref-active=\"nav-btn-active\">Home</a></li>-->\n            <li><a ui-sref=\"shots\" ui-sref-active=\"nav-btn-active\">Home</a></li>\n            <li class=\"right-btn\" ui-sref-active=\"nav-btn-active\"><a href=\"https://github.com/dannyYassine/angularjs-dribbble-client\"\n                   target=\"_blank\">\n                <img class=\"right-btn-img\" src=\"/assets/github.png\"/>\n                </a>\n            </li>\n        </ul>\n    </div>\n    <br>\n    <br>\n    <br>\n    <br>\n    <br>\n    <div class=\"full-height\" ui-view></div>\n\n    <div footer></div>\n</div>";
 
 /***/ }),
 /* 136 */
@@ -56556,7 +56556,7 @@ module.exports = FooterDirective;
 /* 146 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer\">\n    <div class=\"footer-layout\">\n        <h4>AngularJS Dribbble Client and more!</h4>\n        <h4>Danny Yassine</h4>\n        <h4></h4>\n    </div>\n</div>";
+module.exports = "<div class=\"footer\">\n    <div class=\"footer-layout\">\n        <h4>AngularJS Dribbble Client</h4>\n        <h4>Danny Yassine</h4>\n        <h4></h4>\n    </div>\n</div>";
 
 /***/ }),
 /* 147 */
@@ -56697,7 +56697,7 @@ module.exports = ShotCardDirective;
 /* 153 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-container hover-position-shadow\">\n    <a ui-sref=\"shotDetail({ id: shot.id })\">\n    <img class=\"card-img\"\n             ng-src=\"{{shot.images.normal}}\"\n             alt=\"{{shot.title}}\"\n             gif-player\n        />\n        <h4>{{ shot.title }}</h4>\n    </a>\n</div>";
+module.exports = "<div class=\"card-container hover-position-shadow\">\n    <img class=\"card-img\"\n             ng-src=\"{{shot.images.normal}}\"\n             alt=\"{{shot.title}}\"\n             gif-player\n        />\n        <h4>{{ shot.title }}</h4>\n</div>";
 
 /***/ }),
 /* 154 */

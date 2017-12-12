@@ -30,15 +30,15 @@ function configRouterProvider($urlRouterProvider) {
 }
 
 app.config(function($stateProvider) {
-    const homeState = {
-        name: 'home',
-        url: '/',
-        template: '<div home></div>'
-    };
+    // const homeState = {
+    //     name: 'home',
+    //     url: '/',
+    //     template: '<div home></div>'
+    // };
 
     const defaultShotsState = {
         name: 'shots',
-        url: '/shots',
+        url: '/',
         template: '<div shots-list></div>'
     };
 
@@ -60,7 +60,7 @@ app.config(function($stateProvider) {
         template: '<div shots-list></div>'
     };
 
-    $stateProvider.state(homeState);
+    // $stateProvider.state(homeState);
     $stateProvider.state(defaultShotsState);
     $stateProvider.state(shotDetailState);
     $stateProvider.state(profileState);
