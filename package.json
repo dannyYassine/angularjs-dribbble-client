@@ -36,5 +36,8 @@
     "webpack": "^3"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "6.11.5"
+  }
 }
